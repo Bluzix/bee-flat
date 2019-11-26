@@ -1,3 +1,15 @@
+/* Main Elements of the HTML page */
+*{
+  margin: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+body, html{
+  background-color: #000;
+  height: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #eee;
+}
 /*
     thank you for all your help, not just with the games but at work too. you're great dude
 
@@ -11,4 +23,32 @@
 
 .bee-flat #canvas{
     background-color: #00918e;    
+}
+canvas{
+  touch-action: none;
+  display: none;
+  cursor: none;
+}
+/* Start Menu */
+.start-wrapper{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+.game-title{
+  font-size: 3rem;
+}
+.blink{
+  animation: blinker 1s linear infinite;
+  padding: 5rem;
+  font-size: 3rem;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0%;
+  }
 }
