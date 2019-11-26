@@ -1,4 +1,7 @@
-let canvas = document.getElementById('canvas');
+// Is this the first keypress to close the Start Menu?
+let firstKey = true;
+
+let canvas = document.getElementById('world');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -58,8 +61,18 @@ function init(){
     animate();
 };
 
+function startGame(){
+    let startScreen = document.getElementById("start_screen");
+    startScreen.style.display = "none";
+    canvas.style.display = "block";
+    init();
+};
+
 document.addEventListener('keydown', function(e){
-    if(e.key == "ArrowUp" && !player.up){
+    if(firstKey){
+        firstKey = false;
+        startGame();
+    }else if(e.key == "ArrowUp" && !player.up){
         player.dy -= player.speed;
         player.up = true;
     }else if(e.key == "ArrowDown" && !player.down){
@@ -89,5 +102,3 @@ document.addEventListener('keyup', function(e){
         player.right = false;
     }
 });
-
-init();
