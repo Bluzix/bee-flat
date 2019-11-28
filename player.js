@@ -17,21 +17,37 @@ class Player{
 
         this.gliding = false;
         this.launching = true;
+
+        this.points = 0;
     }
 
-    draw(ctx){
+    draw(ctx, worldHeight){        
+
         ctx.beginPath();//you have to begin a new path everytime
         ctx.fillStyle = '#ffdc34';
         ctx.rect(this.x,this.y,this.width,this.height);
         ctx.fill();
 
+        /**
+         * Draw Player HUD
+         */
+        //launchspeed
+        ctx.font = "20px Arial";
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText("LaunchSpeed: " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2);
+
+        //points
+        ctx.font = "20px Arial";
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText("Points: " + this.points, (player.x + window.innerWidth/5), (player.y-window.innerHeight/2.2));
+
+
         //draw arrow for angle
         if(this.launching){
-
-
-            //THIS IS ARBITRARY for testing of everything else we need to find where the player will change his path
+            ///i think the arrow should actually show the angle, we also need an angle property to the leap 
             this.draw_arrow(ctx, this.x, this.y, 528,1656);
         }
+        
     }
     
     draw_arrow(ctx, fromx, fromy, tox, toy) {
@@ -55,6 +71,9 @@ class Player{
         if(!(this.y > worldHeight - this.dy - this.height)){
             this.x += this.dx;
             this.y += this.dy;
+            if(!this.launching){
+                this.points++;
+            }
         }
     }
 

@@ -26,12 +26,11 @@ class World{
         ctx.rect(this.x,this.y,this.width,this.height);
         ctx.fill();
 
-        //draw world stats, to aid development
-        ctx.font = "20px Arial";
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText("X: " + player.x + "/" + this.width, player.x+30, player.y);
-        ctx.fillText("Y: " + player.y + "/" + this.height, player.x+30, player.y+30);
-        
+        //I was thinking we have the player spawn on a building and leap off of it
+        ctx.beginPath();
+        ctx.fillStyle = '#00F';
+        ctx.rect(0, this.height-80, 110, 80);
+        ctx.fill();
     }
 
     update(){

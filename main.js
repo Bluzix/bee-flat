@@ -19,7 +19,7 @@ function update(){
 
 function draw(){
     world.draw(ctx,canvas,player);
-    player.draw(ctx);
+    player.draw(ctx,world.height);
 }
 
 function animate(){
@@ -46,35 +46,11 @@ document.addEventListener('keydown', function(e){
     if(firstKey){
         firstKey = false;
         startGame();
-    }else if(e.key == "ArrowUp" && !player.up){
-        player.dy -= player.speed;
-        player.up = true;
-    }else if(e.key == "ArrowDown" && !player.down){
-        player.dy += player.speed;
-        player.down = true;
-    }else if(e.key == "ArrowLeft" && !player.left){
-        player.dx -= player.speed;
-        player.left = true;
-    }else if(e.key == "ArrowRight" && !player.right){
-        player.dx += player.speed;
-        player.right = true;
     }
 });
 
 document.addEventListener('keyup', function(e){
-    if(e.key == "ArrowUp" && player.up){
-        player.dy += player.speed;
-        player.up = false;
-    }else if(e.key == "ArrowDown" && player.down){
-        player.dy -= player.speed;
-        player.down = false;
-    }else if(e.key == "ArrowLeft" && player.left){
-        player.dx += player.speed;
-        player.left = false;
-    }else if(e.key == "ArrowRight" && player.right){
-        player.dx -= player.speed;
-        player.right = false;
-    }
+    
 });
 
 document.addEventListener('mousedown', function(){
