@@ -24,9 +24,18 @@ class Player{
     draw(ctx, worldHeight){        
 
         ctx.beginPath();//you have to begin a new path everytime
-        ctx.fillStyle = '#ffdc34';
+        ctx.fillStyle = '#000';
+        ctx.strokeStyle = '#222';
         ctx.rect(this.x,this.y,this.width,this.height);
         ctx.fill();
+
+        //draw headband
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "red";
+        ctx.moveTo(this.x, this.y+(.15 *this.height));
+        ctx.lineTo(this.x+this.width, this.y+(.15 *this.height));
+        ctx.stroke();
 
         /**
          * Draw Player HUD
@@ -58,6 +67,7 @@ class Player{
 
         ctx.beginPath();
         ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
         ctx.moveTo(fromx, fromy);
         ctx.lineTo(tox, toy);
         ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
