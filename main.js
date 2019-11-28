@@ -14,7 +14,7 @@ let player;
 
 function update(){
     world.update();
-    player.update();
+    player.update(world.height);
 }
 
 function draw(){
@@ -31,7 +31,7 @@ function animate(){
 
 function init(){
     world = new World(worldObjects.x, worldObjects.y, worldObjects.width, worldObjects.height);
-    player = new Player(10,10,10,20);
+    player = new Player(100,world.height-100,10,20);
     animate();
 };
 
@@ -76,4 +76,13 @@ document.addEventListener('keyup', function(e){
         player.right = false;
     }
 });
+
+document.addEventListener('mousedown', function(){
+    if(firstKey){
+        firstKey = false;
+        startGame();
+    }else if(player.launching){
+        player.launch();
+    }
+})
 
