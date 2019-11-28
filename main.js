@@ -53,6 +53,15 @@ document.addEventListener('keyup', function(e){
     
 });
 
+canvas.addEventListener('touchstart', function(e){
+    if(firstKey){
+        firstKey = false;
+        startGame();
+    }else if(player.launching){
+        player.launch();
+    }
+});
+
 document.addEventListener('mousedown', function(){
     if(firstKey){
         firstKey = false;
