@@ -77,9 +77,3 @@ document.addEventListener('keyup', function(e){
     }
 });
 
-document.addEventListener('mousedown', function(e){
-    if(firstKey){
-        firstKey = false;
-        startGame();
-    }
-});
