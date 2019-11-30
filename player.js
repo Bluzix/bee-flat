@@ -17,6 +17,7 @@ class Player{
 
         this.gliding = false;
         this.launching = true;
+        this.landed = false;
 
         this.points = 0;
     }
@@ -43,7 +44,7 @@ class Player{
         //launchspeed
         ctx.font = "20px Arial";
         ctx.fillStyle = '#ffffff';
-        ctx.fillText("LaunchSpeed: " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2);
+        ctx.fillText("Launch Speed: " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2);
 
         //points
         ctx.font = "20px Arial";
@@ -84,7 +85,22 @@ class Player{
             if(!this.launching){
                 this.points++;
             }
+        }else{
+            this.gliding = false;
+            this.landed = true;
+            this.reset(100,world.height-100,10,20);
+            //reset player
         }
+    }
+
+    reset(x,y,width,height){
+        this.x = x;
+        this.y = y;
+        this.dx = 0;
+        this.dy = 0;
+        this.width = width;
+        this.height = height;
+        this.launching = true;
     }
 
     launch(){
