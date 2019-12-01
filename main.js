@@ -29,6 +29,16 @@ let shop = {
     open: false
 }
 
+/**
+ * Sounds
+ */
+let jumpSound = new Audio("sounds/jump.wav");
+let hitSound = new Audio("sounds/hitBee.wav");
+let buySound = new Audio("sounds/buy.wav");
+
+
+
+
 function update(){
     world.update();
     player.update(world.height);
@@ -37,6 +47,7 @@ function update(){
         //check to see if the player hit it
         if(rectCollision(player, beeArray[i]) && !player.launching){
             player.land();
+            hitSound.play();
         }
     }
     if(player.landed && !shop.open){
@@ -123,6 +134,7 @@ document.addEventListener('keydown', function(e){
         startGame();
     }else if(player.launching && !shop.open){
         player.launch();
+        jumpSound.play();
     }else if(!player.gliding && !shop.open){
         player.glide();
     }
@@ -138,6 +150,7 @@ canvas.addEventListener('touchstart', function(e){
         startGame();
     }else if(player.launching && !shop.open){
         player.launch();
+        jumpSound.play();
     }else if(!player.gliding && !shop.open){
         player.glide();
     }
@@ -149,6 +162,7 @@ document.addEventListener('mousedown', function(){
         startGame();
     }else if(player.launching && !shop.open){
         player.launch();
+        jumpSound.play();
     }else if(!player.gliding && !shop.open){
         player.glide();
     }
@@ -165,6 +179,7 @@ upgradeSpeed.addEventListener('click', function(){
 
     //only upgrade speed if the player can afford it
     if (player.points >= 100*player.launchDx){
+        buySound.play();
         player.points-=100*player.launchDx;
         player.launchDx++;
         shopPoints.innerHTML = "Points: " + player.points;
@@ -183,6 +198,7 @@ upgradeGlider.addEventListener('click', function(){
 
     //only upgrade glider if the player can afford it and max value not reached
     if (player.points >= Math.ceil(maxGlidePrice*player.glideReduce) && player.glideReduce < 0.9){
+        buySound.play();
         player.points-=Math.ceil(maxGlidePrice*player.glideReduce);
         player.glideReduce+=0.01;
         shopPoints.innerHTML = "Points: " + player.points;
