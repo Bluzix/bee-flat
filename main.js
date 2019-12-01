@@ -35,7 +35,8 @@ let shop = {
 let jumpSound = new Audio("sounds/jump.wav");
 let hitSound = new Audio("sounds/hitBee.wav");
 let buySound = new Audio("sounds/buy.wav");
-
+let music = new Audio("sounds/music.mp3");
+music.volume = 0.6; 
 
 
 
@@ -110,6 +111,7 @@ function startGame(){
     startScreen.style.display = "none";
     canvas.style.display = "block";
     init();
+    music.play();
 };
 
 function rectCollision(rect1, rect2){
