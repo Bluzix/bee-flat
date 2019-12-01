@@ -56,7 +56,7 @@ function update(){
         //lets also use this to randomize the bee's locations
         for(let i = 0; i < 50; i++){
             let x = randomIntFromInterval(player.x*2, world.width);// the starting pos is just a guess
-            let y = randomIntFromInterval(0, world.height);            
+            let y = randomIntFromInterval(0, world.height-200);//the bees are too low to the ground
             beeArray[i].x = x;
             beeArray[i].y = y;
         }
@@ -98,7 +98,7 @@ function init(){
     //create random locations for bees
     for(let i = 0; i < 50; i++){
         let x = randomIntFromInterval(player.x*2, world.width);// the starting pos is just a guess
-        let y = randomIntFromInterval(0, world.height);
+        let y = randomIntFromInterval(0, world.height-200);//lowers the chance of hitting a bee
         
         beeArray.push(new Bee(x,y));
         
