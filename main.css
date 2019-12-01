@@ -1,6 +1,9 @@
+/*    
+    https://colorhunt.co/palette/162790
+*/
+
 /* Main Elements of the HTML page */
-*{
-  margin: 0px;
+*{  
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -9,15 +12,12 @@ body, html{
   height: 100%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #eee;
+  text-align: center;
 }
-/*
-    thank you for all your help, not just with the games but at work too. you're great dude
 
-    https://colorhunt.co/palette/162790
-*/
 
 .bee-flat body{
-    margin:0;
+    margin:auto ;
     overflow: hidden;
 }
 
@@ -28,7 +28,55 @@ canvas{
   touch-action: none;
   display: none;
   cursor: none;
+  z-index: 1;
 }
+
+/* Shop */
+#shop_screen{
+  position: relative;
+  width: 100%;
+  height:100%;
+  background-color: black;
+  display: none;
+  z-index: 10;
+  margin: auto;
+}
+
+.shop-wrapper{
+  background-color: #222;
+  height: 80%;
+  margin:20px;
+}
+#points{
+  font-size: 16px; 
+}
+
+#upgrade_speed{
+  background-color: #00918e;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  margin:150px 20px 20px 20px;
+}
+
+#close_shop{
+  background-color: #f00;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  margin:150px 20px 20px 20px;
+}
+
 /* Start Menu */
 .start-wrapper{
   margin: 0;

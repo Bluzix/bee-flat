@@ -12,9 +12,26 @@ let animateId;
 let world;
 let player;
 
+/**
+ * Shop Variables
+ */
+let shopScreen = document.getElementById("shop_screen");
+let shopPoints = document.getElementById('points');
+let launchSpeed = document.getElementById("launch_speed");
+let shop = {
+    open: false
+}
+
 function update(){
     world.update();
     player.update(world.height);
+    if(player.landed && !shop.open){
+        shop.open = true;
+        shopScreen.style.display = "block";
+        canvas.style.display = "none";
+        shopPoints.innerHTML = "Points: " + player.points;
+        launchSpeed.innerHTML = "Launch Speed" + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+    }
 }
 
 function draw(){
@@ -66,8 +83,25 @@ document.addEventListener('mousedown', function(){
     if(firstKey){
         firstKey = false;
         startGame();
-    }else if(player.launching){
+    }else if(player.launching && !shop.open){
         player.launch();
     }
 })
 
+/**
+ * Shop Events
+ */
+
+document.getElementById("upgrade_speed").addEventListener('click', function(){
+    player.points-=100*player.launchDx;
+    player.launchDx++;
+    shopPoints.innerHTML = "Points: " + player.points;
+    launchSpeed.innerHTML = "Launch Speed" + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+});
+
+document.getElementById("close_shop").addEventListener('click', function(){
+    player.landed = false;
+    shop.open = false;
+    shopScreen.style.display = "none";
+    canvas.style.display = "block"; 
+});
