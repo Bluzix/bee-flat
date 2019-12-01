@@ -36,7 +36,7 @@ let jumpSound = new Audio("sounds/jump.wav");
 let hitSound = new Audio("sounds/hitBee.wav");
 let buySound = new Audio("sounds/buy.wav");
 let music = new Audio("sounds/music.mp3");
-music.volume = 0.6; 
+music.volume = 0.4; 
 
 
 
