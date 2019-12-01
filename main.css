@@ -1,9 +1,9 @@
-/*    
+/*
     https://colorhunt.co/palette/162790
 */
 
 /* Main Elements of the HTML page */
-*{  
+*{
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -22,7 +22,7 @@ body, html{
 }
 
 .bee-flat #canvas{
-    background-color: #00918e;    
+    background-color: #00918e;
 }
 canvas{
   touch-action: none;
@@ -48,7 +48,7 @@ canvas{
   margin:20px;
 }
 #points{
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 #upgrade_speed{
@@ -75,6 +75,12 @@ canvas{
   font-size: 16px;
   font-weight: 800;
   margin:150px 20px 20px 20px;
+}
+
+#short_funds{
+  font-size: 16px;
+  color: red;
+  animation: blinker 1s linear infinite;
 }
 
 /* Start Menu */

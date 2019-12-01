@@ -18,6 +18,8 @@ let player;
 let shopScreen = document.getElementById("shop_screen");
 let shopPoints = document.getElementById('points');
 let launchSpeed = document.getElementById("launch_speed");
+let upgradeSpeed = document.getElementById("upgrade_speed");
+let shortFunds = document.getElementById("short_funds");
 let shop = {
     open: false
 }
@@ -30,7 +32,8 @@ function update(){
         shopScreen.style.display = "block";
         canvas.style.display = "none";
         shopPoints.innerHTML = "Points: " + player.points;
-        launchSpeed.innerHTML = "Launch Speed" + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+        launchSpeed.innerHTML = "Launch Speed " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+        upgradeSpeed.innerHTML = "Upgrade Speed -" + (100*player.launchDx) + " Points"
     }
 }
 
@@ -67,7 +70,7 @@ document.addEventListener('keydown', function(e){
 });
 
 document.addEventListener('keyup', function(e){
-    
+
 });
 
 canvas.addEventListener('touchstart', function(e){
@@ -92,16 +95,23 @@ document.addEventListener('mousedown', function(){
  * Shop Events
  */
 
-document.getElementById("upgrade_speed").addEventListener('click', function(){
-    player.points-=100*player.launchDx;
-    player.launchDx++;
-    shopPoints.innerHTML = "Points: " + player.points;
-    launchSpeed.innerHTML = "Launch Speed" + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+upgradeSpeed.addEventListener('click', function(){
+    if (player.points >= 100*player.launchDx){
+        player.points-=100*player.launchDx;
+        player.launchDx++;
+        shopPoints.innerHTML = "Points: " + player.points;
+        launchSpeed.innerHTML = "Launch Speed " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+        upgradeSpeed.innerHTML = "Upgrade Speed -" + (100*player.launchDx) + " Points"
+    }
+    else{
+      shortFunds.style.display = "block";
+    }
 });
 
 document.getElementById("close_shop").addEventListener('click', function(){
     player.landed = false;
     shop.open = false;
+    shortFunds.style.display = "none";
     shopScreen.style.display = "none";
-    canvas.style.display = "block"; 
+    canvas.style.display = "block";
 });
