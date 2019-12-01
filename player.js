@@ -9,6 +9,7 @@ class Player{
 
         this.launchDx = 8;
         this.launchDy = -4;
+        this.glideReduce = 0.1;
 
         this.up = false;
         this.down = false;
@@ -22,8 +23,19 @@ class Player{
         this.points = 0;
     }
 
-    draw(ctx, worldHeight){        
+    draw(ctx, worldHeight){
+        //draw glider if gliding
+        if (this.gliding){
+            ctx.beginPath();
+            ctx.fillStyle = "green";
+            ctx.moveTo(this.x - 10, this.y - 10);
+            ctx.lineTo(this.x + this.width + 10, this.y);
+            ctx.lineTo(this.x - 10, this.y + 10);
+            ctx.closePath();
+            ctx.fill();
+        }
 
+        //draw ninja (body)
         ctx.beginPath();//you have to begin a new path everytime
         ctx.fillStyle = '#000';
         ctx.strokeStyle = '#222';
@@ -54,12 +66,12 @@ class Player{
 
         //draw arrow for angle
         if(this.launching){
-            ///i think the arrow should actually show the angle, we also need an angle property to the leap 
+            ///i think the arrow should actually show the angle, we also need an angle property to the leap
             this.draw_arrow(ctx, this.x, this.y, 528,1656);
         }
-        
+
     }
-    
+
     draw_arrow(ctx, fromx, fromy, tox, toy) {
         var headlen = 10; // length of head in pixels
         var dx = tox - fromx;
@@ -76,7 +88,7 @@ class Player{
         ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
         ctx.stroke();
     }
-    
+
     update(worldHeight){
         //update the player if not on the ground
         if(!(this.y > worldHeight - this.dy - this.height)){
@@ -108,20 +120,22 @@ class Player{
         this.dx = this.launchDx;
         this.dy = this.launchDy;
         this.launching = false;
+    }
 
-        /**
-         * I use an arrow function because keyword (this)
-         * inside a setTimeout refers to the outside scope instead of 
-         * the parent of the function
-         * 
-         * https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881/
-         */
-        setTimeout(()=>{
-            console.log(this.x,this.y);
-            //set the glide velocities
-            this.dy = -this.launchDy;
+    glide(){
+        // When the play clicks/touches/press a key a second time, glide
+        if (this.dy < 0){
+          this.dy = 0;
+        }
 
-            this.gliding = true;
-        }, 1000);
+        this.gliding = true;
+    }
+
+    slowDown(dy){
+        if (this.gliding){
+            this.dy = this.dy + (dy - (dy * this.glideReduce));
+        }else{
+            this.dy = this.dy + dy;
+        }
     }
 }
