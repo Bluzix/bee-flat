@@ -40,6 +40,7 @@ canvas{
   display: none;
   z-index: 10;
   margin: auto;
+  overflow: scroll;
 }
 
 .shop-wrapper{
