@@ -19,10 +19,10 @@ player can buy upgrades and try to fly to the end, again.
 - ~~Character starts by taking a leap~~
 - Have character move on key presses
   - ~~Upgrade: Increase Horizontal Movement Speed~~
-- Character falls slowly to the ground
-  - Upgrade: Fall Slower
+- ~~Character falls slowly to the ground~~
+  - ~~Upgrade: Fall Slower~~
   - Upgrade: One Small mid-air jump
-- Camera Follows Player
+- ~~Camera Follows Player~~
   - ~~Stops if Character goes too far left~~
   - Stops if Character goes too far right (reaches goal)
   - ~~Camera stays center on Player~~

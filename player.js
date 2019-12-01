@@ -19,6 +19,7 @@ class Player{
         this.gliding = false;
         this.launching = true;
         this.landed = false;
+        this.firstTime = true;
 
         this.points = 0;
     }
@@ -63,6 +64,17 @@ class Player{
         ctx.fillStyle = '#ffffff';
         ctx.fillText("Points: " + this.points, (player.x + window.innerWidth/5), (player.y-window.innerHeight/2.2));
 
+        //tutorial message
+        if(this.firstTime && this.launching){
+            ctx.font = "20px Arial";
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText("Tap or press any key to leap.", (player.x - 120), (player.y-20));
+        }
+        else if(this.firstTime && !this.launching && !this.gliding){
+            ctx.font = "20px Arial";
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText("Tap or press any key to glide.", (player.x - 120), (player.y-20));
+        }
 
         //draw arrow for angle
         if(this.launching){
@@ -105,6 +117,7 @@ class Player{
             this.gliding = false;
             this.landed = true;
             this.landing = false;
+            this.firstTime = false;
             this.reset(100,world.height-100,10,20);
             //reset player
         }
