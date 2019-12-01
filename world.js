@@ -4,19 +4,21 @@ class World{
         this.y = y;
         this.width = width;
         this.height = height;
+
+        this.gravity = 0.05;
     }
-    
+
     /**
-     * 
-     * @param {CanvasRenderingContext2D} ctx 
-     * @param {Element} canvas 
-     * @param {Player} player 
+     *
+     * @param {CanvasRenderingContext2D} ctx
+     * @param {Element} canvas
+     * @param {Player} player
      */
     draw(ctx, canvas, player){
 
         ctx.setTransform(1,0,0,1,0,0);//reset the transform matrix as it is cumulative
         ctx.clearRect(0, 0, canvas.width, canvas.height);//clear the viewport AFTER the matrix is reset
-        
+
         //move the viewport
         ctx.translate( -player.x-player.width/2+canvas.width/2, -player.y-player.height/2+canvas.height/2 );
 

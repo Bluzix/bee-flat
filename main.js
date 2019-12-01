@@ -40,6 +40,11 @@ function update(){
 function draw(){
     world.draw(ctx,canvas,player);
     player.draw(ctx,world.height);
+
+    // if the player is in flight (jumped or gliding), have gravity affect them
+    if (!player.launching){
+        player.slowDown(world.gravity);
+    }
 }
 
 function animate(){
@@ -66,8 +71,10 @@ document.addEventListener('keydown', function(e){
     if(firstKey){
         firstKey = false;
         startGame();
-    }else if(player.launching){
+    }else if(player.launching && !shop.open){
         player.launch();
+    }else if(!player.gliding && !shop.open){
+        player.glide();
     }
 });
 
@@ -79,8 +86,10 @@ canvas.addEventListener('touchstart', function(e){
     if(firstKey){
         firstKey = false;
         startGame();
-    }else if(player.launching){
+    }else if(player.launching && !shop.open){
         player.launch();
+    }else if(!player.gliding && !shop.open){
+        player.glide();
     }
 });
 
@@ -90,6 +99,8 @@ document.addEventListener('mousedown', function(){
         startGame();
     }else if(player.launching && !shop.open){
         player.launch();
+    }else if(!player.gliding && !shop.open){
+        player.glide();
     }
 })
 
