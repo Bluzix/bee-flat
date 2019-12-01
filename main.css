@@ -51,7 +51,7 @@ canvas{
   font-size: 16px;
 }
 
-#upgrade_speed{
+#upgrade_speed, #upgrade_glider{
   background-color: #00918e;
   border: none;
   color: white;
@@ -77,10 +77,9 @@ canvas{
   margin:150px 20px 20px 20px;
 }
 
-#short_funds{
+#short_funds, #max_reached{
   font-size: 16px;
   color: red;
-  animation: blinker 1s linear infinite;
 }
 
 /* Start Menu */

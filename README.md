@@ -13,18 +13,20 @@ Paper Plane.  The player will only have one life, but after the round, the
 player can buy upgrades and try to fly to the end, again.
 ## Todo
 - Draw world
-- Draw character
-- Character starts by taking a leap
+  - ~~Have a world~~
+  - Draw an interesting backdrop
+- ~~Draw character~~
+- ~~Character starts by taking a leap~~
 - Have character move on key presses
-  - Upgrade: Increase Horizontal Movement Speed
+  - ~~Upgrade: Increase Horizontal Movement Speed~~
 - Character falls slowly to the ground
   - Upgrade: Fall Slower
   - Upgrade: One Small mid-air jump
 - Camera Follows Player
-  - Stops if Character goes too far left
+  - ~~Stops if Character goes too far left~~
   - Stops if Character goes too far right (reaches goal)
-  - Camera stays center on Player
-- Character lands when it hits the floor
+  - ~~Camera stays center on Player~~
+- ~~Character lands when it hits the floor~~
 - Obstacle: Platform
   - Character lands when it hits the top
   - Character stops floating when it hits the bottom
@@ -40,8 +42,8 @@ player can buy upgrades and try to fly to the end, again.
   - Some fly in from the right; should only spawn when character is in range
   - Some rotate in a circle with other Bees
 - Upgrade Shop
-  - Earn Cash after every landing
-  - Buy Upgrades
+  - ~~Earn Cash after every landing~~
+  - ~~Buy Upgrades~~
   - Buy Tools: refill after every landing
   - Buy Consumables: don't refill after every landing
 - Tool: Smoke Pellet
@@ -51,6 +53,6 @@ player can buy upgrades and try to fly to the end, again.
 - Goal
   - The furthest right of the "world"
   - Reach a Game Over screen
-  - Score gained at checkpoints
-  - Score subtracted when upgrades, tools, or consumables are purchased
+  - ~~Score gained at checkpoints~~
+  - ~~Score subtracted when upgrades, tools, or consumables are purchased~~
   - High Score table

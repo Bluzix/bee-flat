@@ -18,8 +18,12 @@ let player;
 let shopScreen = document.getElementById("shop_screen");
 let shopPoints = document.getElementById('points');
 let launchSpeed = document.getElementById("launch_speed");
+let gliderEffect = document.getElementById("glide_effect");
 let upgradeSpeed = document.getElementById("upgrade_speed");
+let upgradeGlider = document.getElementById("upgrade_glider");
 let shortFunds = document.getElementById("short_funds");
+let maxReached = document.getElementById("max_reached");
+let maxGlidePrice = 10000;
 let shop = {
     open: false
 }
@@ -33,7 +37,9 @@ function update(){
         canvas.style.display = "none";
         shopPoints.innerHTML = "Points: " + player.points;
         launchSpeed.innerHTML = "Launch Speed " + (-player.launchDy+player.launchDx), player.x - window.innerWidth/5, player.y+window.innerHeight/2;
+        gliderEffect.innerHTML = "Glider Effect: -" + Math.floor(100*player.glideReduce) + "% of Gravity";
         upgradeSpeed.innerHTML = "Upgrade Speed -" + (100*player.launchDx) + " Points"
+        upgradeGlider.innerHTML = "Upgrade Glider -" + Math.ceil(10000*player.glideReduce) + " Points"
     }
 }
 
@@ -109,6 +115,11 @@ document.addEventListener('mousedown', function(){
  */
 
 upgradeSpeed.addEventListener('click', function(){
+    //reset notifications
+    shortFunds.style.display = "none";
+    maxReached.style.display = "none";
+
+    //only upgrade speed if the player can afford it
     if (player.points >= 100*player.launchDx){
         player.points-=100*player.launchDx;
         player.launchDx++;
@@ -121,10 +132,32 @@ upgradeSpeed.addEventListener('click', function(){
     }
 });
 
+upgradeGlider.addEventListener('click', function(){
+    //reset notifications
+    shortFunds.style.display = "none";
+    maxReached.style.display = "none";
+
+    //only upgrade glider if the player can afford it and max value not reached
+    if (player.points >= Math.ceil(maxGlidePrice*player.glideReduce) && player.glideReduce < 0.9){
+        player.points-=Math.ceil(maxGlidePrice*player.glideReduce);
+        player.glideReduce+=0.01;
+        shopPoints.innerHTML = "Points: " + player.points;
+        gliderEffect.innerHTML = "Glider Effect: -" + Math.floor(100*player.glideReduce) + "% of Gravity";
+        upgradeGlider.innerHTML = "Upgrade Glider -" + Math.ceil(maxGlidePrice*player.glideReduce) + " Points"
+    }
+    else if (player.glideReduce >= 0.9){
+        maxReached.style.display = "block";
+    }
+    else{
+        shortFunds.style.display = "block";
+    }
+});
+
 document.getElementById("close_shop").addEventListener('click', function(){
     player.landed = false;
     shop.open = false;
     shortFunds.style.display = "none";
+    maxReached.style.display = "none";
     shopScreen.style.display = "none";
     canvas.style.display = "block";
 });
