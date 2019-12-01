@@ -66,6 +66,8 @@ document.addEventListener('keydown', function(e){
     if(firstKey){
         firstKey = false;
         startGame();
+    }else if(player.launching){
+        player.launch();
     }
 });
 
