@@ -91,6 +91,10 @@ class Player{
 
     update(worldHeight){
         //update the player if not on the ground
+        if(this.landing){
+            this.dx = 0;
+            this.dy = 3;
+        }
         if(!(this.y > worldHeight - this.dy - this.height)){
             this.x += this.dx;
             this.y += this.dy;
@@ -100,9 +104,14 @@ class Player{
         }else{
             this.gliding = false;
             this.landed = true;
+            this.landing = false;
             this.reset(100,world.height-100,10,20);
             //reset player
         }
+    }
+
+    land(){
+        this.landing = true;
     }
 
     reset(x,y,width,height){

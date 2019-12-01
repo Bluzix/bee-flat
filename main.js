@@ -10,6 +10,7 @@ let ctx = canvas.getContext('2d');
 let animateId;
 
 let world;
+let beeArray = [];
 let player;
 
 /**
@@ -31,7 +32,22 @@ let shop = {
 function update(){
     world.update();
     player.update(world.height);
+    for(let i = 0; i < beeArray.length; i++){
+        beeArray[i].update();
+        //check to see if the player hit it
+        if(rectCollision(player, beeArray[i]) && !player.launching){
+            player.land();
+        }
+    }
     if(player.landed && !shop.open){
+
+        //lets also use this to randomize the bee's locations
+        for(let i = 0; i < 50; i++){
+            let x = randomIntFromInterval(player.x*2, world.width);// the starting pos is just a guess
+            let y = randomIntFromInterval(0, world.height);            
+            beeArray[i].x = x;
+            beeArray[i].y = y;
+        }
         shop.open = true;
         shopScreen.style.display = "block";
         canvas.style.display = "none";
@@ -46,6 +62,9 @@ function update(){
 function draw(){
     world.draw(ctx,canvas,player);
     player.draw(ctx,world.height);
+    for(let i = 0; i < beeArray.length; i++){
+        beeArray[i].draw(ctx);
+    }
 
     // if the player is in flight (jumped or gliding), have gravity affect them
     if (!player.launching){
@@ -63,6 +82,15 @@ function animate(){
 function init(){
     world = new World(worldObjects.x, worldObjects.y, worldObjects.width, worldObjects.height);
     player = new Player(100,world.height-100,10,20);
+        
+    //create random locations for bees
+    for(let i = 0; i < 50; i++){
+        let x = randomIntFromInterval(player.x*2, world.width);// the starting pos is just a guess
+        let y = randomIntFromInterval(0, world.height);
+        
+        beeArray.push(new Bee(x,y));
+        
+    }
     animate();
 };
 
@@ -72,6 +100,22 @@ function startGame(){
     canvas.style.display = "block";
     init();
 };
+
+function rectCollision(rect1, rect2){
+    if (rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.y + rect1.height > rect2.y) {
+         // collision detected!
+         return true;
+    }else{
+        return false;
+    }
+}
+
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
 document.addEventListener('keydown', function(e){
     if(firstKey){
