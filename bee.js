@@ -1,41 +1,32 @@
 class Bee{
-    constructor(x,y,width,height){
+    constructor(x,y){
         this.x = x;
         this.y = y;
         this.dx = 0;
         this.dy = 0;
-        this.width = width;
-        this.height = height;
+        this.width = 100;
+        this.height = 100;
     }
 
     draw(ctx){
         ctx.beginPath();//you have to begin a new path everytime
-        ctx.fillStyle = '#ff0000';
+        ctx.fillStyle = 'yellow';
         ctx.rect(this.x,this.y,this.width,this.height);
+        ctx.fill();
+
+        //give it stripes
+        ctx.beginPath();
+        ctx.fillStyle = 'black';
+        ctx.rect(this.x+this.width/1.5,this.y,this.width/4,this.height);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = 'black';
+        ctx.rect(this.x+this.width/4,this.y,this.width/4,this.height);
         ctx.fill();
     }
     
-    draw_arrow(ctx, fromx, fromy, tox, toy) {
-        var headlen = 10; // length of head in pixels
-        var dx = tox - fromx;
-        var dy = toy - fromy;
-        var angle = Math.atan2(dy, dx);
+    update(){
 
-        ctx.beginPath();
-        ctx.strokeStyle = "white";
-        ctx.moveTo(fromx, fromy);
-        ctx.lineTo(tox, toy);
-        ctx.lineTo(tox - headlen * Math.cos(angle - Math.PI / 6), toy - headlen * Math.sin(angle - Math.PI / 6));
-        ctx.moveTo(tox, toy);
-        ctx.lineTo(tox - headlen * Math.cos(angle + Math.PI / 6), toy - headlen * Math.sin(angle + Math.PI / 6));
-        ctx.stroke();
-    }
-    
-    update(worldHeight){
-        //update the player if not on the ground
-        if(!(this.y > worldHeight - this.dy - this.height)){
-            this.x += this.dx;
-            this.y += this.dy;
-        }
     }
 }

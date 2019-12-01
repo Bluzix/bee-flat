@@ -20,7 +20,7 @@ class World{
         ctx.clearRect(0, 0, canvas.width, canvas.height);//clear the viewport AFTER the matrix is reset
 
         //move the viewport
-        ctx.translate( -player.x-player.width/2+canvas.width/2, -player.y-player.height/2+canvas.height/2 );
+        ctx.translate(-player.x-player.width/2+canvas.width/2, -player.y-player.height/2+canvas.height/2);
 
         //draw background color
         ctx.beginPath();//you have to begin a new path everytime
@@ -38,6 +38,4 @@ class World{
     update(){
 
     }
-
-
 }
